@@ -9,10 +9,10 @@ export class ProfessoresComponent {
   title = 'Professores';
 
   public professores = [
-    { nome: 'Lauro' },
-    { nome: 'Marco' },
-    { nome: 'Ronaldo' },
-    { nome: 'Rodrigo' },
-    { nome: 'Alexandre' },
+    { id: 1, disciplina: 'Matmática', nome: 'Lauro' },
+    { id: 2, disciplina: 'Física', nome: 'Marco' },
+    { id: 3, disciplina: 'Português', nome: 'Ronaldo' },
+    { id: 4, disciplina: 'Inglês', nome: 'Rodrigo' },
+    { id: 5, disciplina: 'Programação', nome: 'Alexandre' },
   ];
 }
