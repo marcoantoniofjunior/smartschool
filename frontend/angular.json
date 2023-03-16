@@ -60,10 +60,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "SmartSchool:build:production"
+              "browserTarget": "frontend:build:production"
             },
             "development": {
-              "browserTarget": "SmartSchool:build:development"
+              "browserTarget": "frontend:build:development"
             }
           },
           "defaultConfiguration": "development"
