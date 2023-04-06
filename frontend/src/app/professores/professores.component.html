@@ -1,7 +1,34 @@
 <div *ngIf="professorSelecionado">
-  <app-titulo [titulo]="'Professor: ' + professorSelecionado"></app-titulo>
-  <br>
-  <div class="btn btn-default" (click)="voltar()">Voltar</div>
+  <div class="row">
+    <div class="rm-auto">
+      <app-titulo
+        [titulo]="'Professor: ' + professorSelecionado.id"
+      ></app-titulo>
+    </div>
+    <div class="mt-1">
+      <div class="btn btn-warning" (click)="voltar()">Lista de Professores</div>
+    </div>
+  </div>
+
+  <form>
+    <div class="form-group">
+      <label>Nome</label>
+      <input
+        type="text"
+        value="{{ professorSelecionado.nome }}"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <label>Disciplina</label>
+      <input
+        type="text"
+        value="{{professorSelecionado.disciplina}}"
+        class="form-control"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
 </div>
 
 <div *ngIf="!professorSelecionado">
@@ -15,10 +42,14 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let prof of professores" style="cursor: pointer" (click)="professorSelect(prof)">
-        <th scope="row">{{ prof.id }}</th>
-        <td>{{ prof.nome }}</td>
-        <td>{{ prof.disciplina }}</td>
+      <tr
+        *ngFor="let prof of professores"
+        style="cursor: pointer"
+        (click)="professorSelect(prof)"
+      >
+        <th scope="row">{{ prof?.id }}</th>
+        <td>{{ prof?.nome }}</td>
+        <td>{{ prof?.disciplina }}</td>
       </tr>
     </tbody>
   </table>

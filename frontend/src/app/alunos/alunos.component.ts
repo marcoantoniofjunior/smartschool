@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Aluno } from '../models/aluno';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-alunos',
@@ -7,8 +9,8 @@ import { Component } from '@angular/core';
 })
 export class AlunosComponent {
   title = 'Alunos';
-
-  public alunoSelecionado: string = '';
+  public alunoSelecionado: Aluno | undefined;
+  public textSimple: string = '';
 
   public alunos = [
     { id: 1, nome: 'Marta', sobrenome: 'Kent', telefone: 332255 },
@@ -22,12 +24,12 @@ export class AlunosComponent {
 
   constructor() {}
 
-  alunoSelect(aluno: any) {
-    this.alunoSelecionado = aluno.nome;
+  alunoSelect(aluno: Aluno) {
+    this.alunoSelecionado = aluno;
   }
 
-  voltar(){
-    this.alunoSelecionado = '';
+  voltar() {
+    this.alunoSelecionado = undefined;
   }
 
   ngOnInit() {}
