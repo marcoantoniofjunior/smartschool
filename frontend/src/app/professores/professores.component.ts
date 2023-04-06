@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Professor } from '../models/professor';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-professores',
@@ -7,9 +8,10 @@ import { Professor } from '../models/professor';
   styleUrls: ['./professores.component.css'],
 })
 export class ProfessoresComponent {
-  title = 'Professores';
 
+  title = 'Professores';
   public professorSelecionado: Professor | undefined ;
+  public professorForm: FormGroup;
 
   public professores = [
     { id: 1, disciplina: 'Matmática', nome: 'Lauro' },
@@ -19,19 +21,31 @@ export class ProfessoresComponent {
     { id: 5, disciplina: 'Programação', nome: 'Alexandre' },
   ];
 
-  constructor(){}
+  constructor(private fb:FormBuilder){}
+  ngOnInit(){
+    this.createForm();
+  }
+
+  createForm(){
+    this.professorForm = this.fb.group({
+      nome:['', Validators.required],
+      disciplina:['', Validators.required]
+    });
+  }
 
   professorSelect(professor: Professor){
     this.professorSelecionado = professor;
+    this.professorForm.patchValue(professor);
   }
 
   voltar(){
     this.professorSelecionado = undefined;
   }
 
-  ngOnInit(){
-
+  professorSubmit(){
+    console.log(this.professorForm.value)
   }
+
 
 
 }

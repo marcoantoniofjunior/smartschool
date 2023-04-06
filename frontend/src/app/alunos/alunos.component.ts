@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Aluno } from '../models/aluno';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-alunos',
@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./alunos.component.css'],
 })
 export class AlunosComponent {
+  public alunoForm: FormGroup;
   title = 'Alunos';
   public alunoSelecionado: Aluno | undefined;
   public textSimple: string = '';
@@ -22,15 +23,30 @@ export class AlunosComponent {
     { id: 7, nome: 'Paulo', sobrenome: 'José', telefone: 332255777 },
   ];
 
-  constructor() {}
+  constructor(private fb: FormBuilder) {
+    this.criarForm();
+  }
+
+  ngOnInit() {}
+
+  criarForm() {
+    this.alunoForm = this.fb.group({
+      nome: ['', Validators.required],
+      sobrenome: ['', Validators.required],
+      telefone: ['', Validators.required],
+    });
+  }
 
   alunoSelect(aluno: Aluno) {
     this.alunoSelecionado = aluno;
+    this.alunoForm.patchValue(aluno);
   }
 
   voltar() {
     this.alunoSelecionado = undefined;
   }
 
-  ngOnInit() {}
+  alunoSubmit() {
+    console.log(this.alunoForm.value);
+  }
 }
